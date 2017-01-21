@@ -1,0 +1,257 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>neurodynex.tools.plot_tools &mdash; Neuronaldynamics Exercises 0.1.1.dev42+ngbaf1c16.d20161110 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Neuronaldynamics Exercises 0.1.1.dev42+ngbaf1c16.d20161110 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Neuronaldynamics Exercises
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.1.dev42+ngbaf1c16.d20161110
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../exercises/index.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents.html">Python exercise modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licence.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Neuronaldynamics Exercises</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>neurodynex.tools.plot_tools</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for neurodynex.tools.plot_tools</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">brian2</span> <span class="k">as</span> <span class="nn">b2</span>
+
+
+<div class="viewcode-block" id="plot_voltage_and_current_traces"><a class="viewcode-back" href="../../../modules/neurodynex.tools.html#neurodynex.tools.plot_tools.plot_voltage_and_current_traces">[docs]</a><span class="k">def</span> <span class="nf">plot_voltage_and_current_traces</span><span class="p">(</span><span class="n">voltage_monitor</span><span class="p">,</span> <span class="n">current</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">firing_threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                    <span class="n">do_show_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend_location</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;plots voltage and current .</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        voltage_monitor (StateMonitor): recorded voltage</span>
+<span class="sd">        current (TimedArray): injected current</span>
+<span class="sd">        title (string, optional): title of the figure</span>
+<span class="sd">        firing_threshold (Quantity, optional): if set to a value, the firing threshold is plotted.</span>
+<span class="sd">        do_show_plot (bool): optional, default=True. Set it to False to suppress the blocking pyplot.show() call.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">voltage_monitor</span><span class="p">,</span> <span class="n">b2</span><span class="o">.</span><span class="n">StateMonitor</span><span class="p">),</span> <span class="s2">&quot;voltage_monitor is not of type StateMonitor&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">b2</span><span class="o">.</span><span class="n">TimedArray</span><span class="p">),</span> <span class="s2">&quot;current is not of type TimedArray&quot;</span>
+
+    <span class="n">time_values_ms</span> <span class="o">=</span> <span class="n">voltage_monitor</span><span class="o">.</span><span class="n">t</span> <span class="o">/</span> <span class="n">b2</span><span class="o">.</span><span class="n">ms</span>
+
+    <span class="c1"># current</span>
+    <span class="n">axis_c</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">current</span><span class="p">(</span><span class="n">voltage_monitor</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">max_current</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">current</span><span class="p">(</span><span class="n">voltage_monitor</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">min_current</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">current</span><span class="p">(</span><span class="n">voltage_monitor</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">margin</span> <span class="o">=</span> <span class="mf">1.05</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_current</span> <span class="o">-</span> <span class="n">min_current</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">voltage_monitor</span><span class="o">.</span><span class="n">t</span> <span class="o">/</span> <span class="n">b2</span><span class="o">.</span><span class="n">ms</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">margin</span> <span class="o">&gt;</span> <span class="mf">0.</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="n">min_current</span> <span class="o">-</span> <span class="n">margin</span><span class="p">)</span> <span class="o">/</span> <span class="n">b2</span><span class="o">.</span><span class="n">amp</span><span class="p">,</span> <span class="p">(</span><span class="n">max_current</span> <span class="o">+</span> <span class="n">margin</span><span class="p">)</span> <span class="o">/</span> <span class="n">b2</span><span class="o">.</span><span class="n">amp</span><span class="p">)</span>
+    <span class="c1"># plt.xlabel(&quot;t [ms]&quot;)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Input current [A] </span><span class="se">\n</span><span class="s2"> min: </span><span class="si">{0}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">max: </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">min_current</span><span class="p">,</span> <span class="n">max_current</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+    <span class="n">axis_v</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_values_ms</span><span class="p">,</span> <span class="n">voltage_monitor</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">v</span> <span class="o">/</span> <span class="n">b2</span><span class="o">.</span><span class="n">mV</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">firing_threshold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">voltage_monitor</span><span class="o">.</span><span class="n">t</span> <span class="o">/</span> <span class="n">b2</span><span class="o">.</span><span class="n">ms</span><span class="p">)[[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]],</span>
+            <span class="p">[</span><span class="n">firing_threshold</span> <span class="o">/</span> <span class="n">b2</span><span class="o">.</span><span class="n">mV</span><span class="p">,</span> <span class="n">firing_threshold</span> <span class="o">/</span> <span class="n">b2</span><span class="o">.</span><span class="n">mV</span><span class="p">],</span>
+            <span class="s2">&quot;r--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span>
+        <span class="p">)</span>
+    <span class="n">max_val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">voltage_monitor</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">firing_threshold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">max_val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_val</span><span class="p">,</span> <span class="n">firing_threshold</span><span class="p">)</span>
+    <span class="n">min_val</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">voltage_monitor</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">v</span><span class="p">)</span>
+    <span class="n">margin</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_val</span> <span class="o">-</span> <span class="n">min_val</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="n">min_val</span> <span class="o">-</span> <span class="n">margin</span><span class="p">)</span> <span class="o">/</span> <span class="n">b2</span><span class="o">.</span><span class="n">mV</span><span class="p">,</span> <span class="p">(</span><span class="n">max_val</span> <span class="o">+</span> <span class="n">margin</span><span class="p">)</span> <span class="o">/</span> <span class="n">b2</span><span class="o">.</span><span class="n">mV</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;t [ms]&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;membrane voltage [mV]</span><span class="se">\n</span><span class="s2"> min: </span><span class="si">{0}</span><span class="se">\n</span><span class="s2"> max: </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">firing_threshold</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;vm&quot;</span><span class="p">,</span> <span class="s2">&quot;firing threshold&quot;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">legend_location</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">do_show_plot</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, EPFL-LCN.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.1.dev42+ngbaf1c16.d20161110',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,276 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>neurodynex.tools.spike_tools &mdash; Neuronaldynamics Exercises 0.1.1.dev42+ngbaf1c16.d20161110 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Neuronaldynamics Exercises 0.1.1.dev42+ngbaf1c16.d20161110 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Neuronaldynamics Exercises
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.1.dev42+ngbaf1c16.d20161110
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../exercises/index.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents.html">Python exercise modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licence.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Neuronaldynamics Exercises</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>neurodynex.tools.spike_tools</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for neurodynex.tools.spike_tools</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">brian2</span> <span class="k">as</span> <span class="nn">b2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="get_spike_time"><a class="viewcode-back" href="../../../modules/neurodynex.tools.html#neurodynex.tools.spike_tools.get_spike_time">[docs]</a><span class="k">def</span> <span class="nf">get_spike_time</span><span class="p">(</span><span class="n">voltage_monitor</span><span class="p">,</span> <span class="n">spike_threshold</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Detects the spike times in the voltage. The spike time is the value in voltage_monitor.t for</span>
+<span class="sd">    which voltage_monitor.v[idx] is above threshold AND voltage_monitor.v[idx-1] is below threshold</span>
+<span class="sd">    (crossing from below).</span>
+<span class="sd">    Note: currently only the spike times of the first column in voltage_monitor are detected. Matrix-like</span>
+<span class="sd">    monitors are not supported.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        voltage_monitor (StateMonitor): A state monitor with at least the fields &quot;v: and &quot;t&quot;</span>
+<span class="sd">        spike_threshold (Quantity): The spike threshold voltage. e.g. -50*b2.mV</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A list of spike times (Quantity)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">voltage_monitor</span><span class="p">,</span> <span class="n">b2</span><span class="o">.</span><span class="n">StateMonitor</span><span class="p">),</span> <span class="s2">&quot;voltage_monitor is not of type StateMonitor&quot;</span>
+    <span class="k">assert</span> <span class="n">b2</span><span class="o">.</span><span class="n">units</span><span class="o">.</span><span class="n">fundamentalunits</span><span class="o">.</span><span class="n">have_same_dimensions</span><span class="p">(</span><span class="n">spike_threshold</span><span class="p">,</span> <span class="n">b2</span><span class="o">.</span><span class="n">volt</span><span class="p">),</span>\
+        <span class="s2">&quot;spike_threshold must be a voltage. e.g. brian2.mV&quot;</span>
+
+    <span class="n">v_above_th</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">voltage_monitor</span><span class="o">.</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">spike_threshold</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">diffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">v_above_th</span><span class="p">)</span>
+    <span class="n">boolean_mask</span> <span class="o">=</span> <span class="n">diffs</span> <span class="o">&gt;</span> <span class="mi">0</span>  <span class="c1"># cross from below.</span>
+    <span class="n">spike_times</span> <span class="o">=</span> <span class="p">(</span><span class="n">voltage_monitor</span><span class="o">.</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:])[</span><span class="n">boolean_mask</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">spike_times</span></div>
+
+
+<div class="viewcode-block" id="get_spike_stats"><a class="viewcode-back" href="../../../modules/neurodynex.tools.html#neurodynex.tools.spike_tools.get_spike_stats">[docs]</a><span class="k">def</span> <span class="nf">get_spike_stats</span><span class="p">(</span><span class="n">voltage_monitor</span><span class="p">,</span> <span class="n">spike_threshold</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Detects spike times and computes ISI, mean ISI and firing frequency.</span>
+<span class="sd">    Note: meanISI and firing frequency are set to numpy.nan if less than two spikes are detected</span>
+<span class="sd">    Note: currently only the spike times of the first column in voltage_monitor are detected. Matrix-like</span>
+<span class="sd">    monitors are not supported.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        voltage_monitor (StateMonitor): A state monitor with at least the fields &quot;v: and &quot;t&quot;</span>
+<span class="sd">        spike_threshold (Quantity): The spike threshold voltage. e.g. -50*b2.mV</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: (nr_of_spikes, spike_times, isi, mean_isi, spike_rate)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">spike_times</span> <span class="o">=</span> <span class="n">get_spike_time</span><span class="p">(</span><span class="n">voltage_monitor</span><span class="p">,</span> <span class="n">spike_threshold</span><span class="p">)</span>
+    <span class="n">isi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">spike_times</span><span class="p">)</span>
+    <span class="n">nr_of_spikes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">spike_times</span><span class="p">)</span>
+    <span class="c1"># init with nan, compute values only if 2 or more spikes are detected</span>
+    <span class="n">mean_isi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="o">*</span> <span class="n">b2</span><span class="o">.</span><span class="n">ms</span>
+    <span class="n">var_isi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="o">*</span> <span class="p">(</span><span class="n">b2</span><span class="o">.</span><span class="n">ms</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">spike_rate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="o">*</span> <span class="n">b2</span><span class="o">.</span><span class="n">Hz</span>
+    <span class="k">if</span> <span class="n">nr_of_spikes</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">mean_isi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">isi</span><span class="p">)</span>
+        <span class="n">var_isi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">isi</span><span class="p">)</span>
+        <span class="n">spike_rate</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">mean_isi</span>
+    <span class="k">return</span> <span class="n">nr_of_spikes</span><span class="p">,</span> <span class="n">spike_times</span><span class="p">,</span> <span class="n">isi</span><span class="p">,</span> <span class="n">mean_isi</span><span class="p">,</span> <span class="n">spike_rate</span><span class="p">,</span> <span class="n">var_isi</span></div>
+
+
+<div class="viewcode-block" id="pretty_print_spike_train_stats"><a class="viewcode-back" href="../../../modules/neurodynex.tools.html#neurodynex.tools.spike_tools.pretty_print_spike_train_stats">[docs]</a><span class="k">def</span> <span class="nf">pretty_print_spike_train_stats</span><span class="p">(</span><span class="n">voltage_monitor</span><span class="p">,</span> <span class="n">spike_threshold</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes and returns the same values as get_spike_stats. Additionally prints these values to the console.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        voltage_monitor:</span>
+<span class="sd">        spike_threshold:</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: (nr_of_spikes, spike_times, isi, mean_isi, spike_rate)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nr_of_spikes</span><span class="p">,</span> <span class="n">spike_times</span><span class="p">,</span> <span class="n">ISI</span><span class="p">,</span> <span class="n">mean_isi</span><span class="p">,</span> <span class="n">spike_freq</span><span class="p">,</span> <span class="n">var_isi</span> <span class="o">=</span> \
+        <span class="n">get_spike_stats</span><span class="p">(</span><span class="n">voltage_monitor</span><span class="p">,</span> <span class="n">spike_threshold</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;nr of spikes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nr_of_spikes</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean ISI: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_isi</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ISI variance: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">var_isi</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;spike freq: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">spike_freq</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">nr_of_spikes</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;spike times: too many values&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ISI: too many values&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;spike times: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">spike_times</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ISI: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ISI</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">spike_times</span><span class="p">,</span> <span class="n">ISI</span><span class="p">,</span> <span class="n">mean_isi</span><span class="p">,</span> <span class="n">spike_freq</span><span class="p">,</span> <span class="n">var_isi</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, EPFL-LCN.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.1.dev42+ngbaf1c16.d20161110',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

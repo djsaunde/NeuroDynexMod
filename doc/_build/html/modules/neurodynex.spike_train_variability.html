@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>neurodynex.spike_train_variability package &mdash; Neuronaldynamics Exercises 0.1.1.dev42+ngbaf1c16.d20161110 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Neuronaldynamics Exercises 0.1.1.dev42+ngbaf1c16.d20161110 documentation" href="../index.html"/>
+        <link rel="up" title="neurodynex package" href="neurodynex.html"/>
+        <link rel="next" title="neurodynex.test package" href="neurodynex.test.html"/>
+        <link rel="prev" title="neurodynex.phase_plane_analysis package" href="neurodynex.phase_plane_analysis.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Neuronaldynamics Exercises
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.1.dev42+ngbaf1c16.d20161110
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exercises/index.html">Exercises</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../contents.html">Python exercise modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="neurodynex.html">neurodynex package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="neurodynex.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.adex_model.html">neurodynex.adex_model package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.cable_equation.html">neurodynex.cable_equation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.exponential_integrate_fire.html">neurodynex.exponential_integrate_fire package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.hodgkin_huxley.html">neurodynex.hodgkin_huxley package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.hopfield_network.html">neurodynex.hopfield_network package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.leaky_integrate_and_fire.html">neurodynex.leaky_integrate_and_fire package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.neuron_type.html">neurodynex.neuron_type package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.ojas_rule.html">neurodynex.ojas_rule package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.phase_plane_analysis.html">neurodynex.phase_plane_analysis package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">neurodynex.spike_train_variability package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.test.html">neurodynex.test package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.tools.html">neurodynex.tools package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="neurodynex.html#module-neurodynex">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../licence.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Neuronaldynamics Exercises</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../contents.html">Python exercise modules</a> &raquo;</li>
+      
+          <li><a href="neurodynex.html">neurodynex package</a> &raquo;</li>
+      
+    <li>neurodynex.spike_train_variability package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/modules/neurodynex.spike_train_variability.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="neurodynex-spike-train-variability-package">
+<h1>neurodynex.spike_train_variability package<a class="headerlink" href="#neurodynex-spike-train-variability-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-neurodynex.spike_train_variability.spike_train_variability">
+<span id="neurodynex-spike-train-variability-spike-train-variability-module"></span><h2>neurodynex.spike_train_variability.spike_train_variability module<a class="headerlink" href="#module-neurodynex.spike_train_variability.spike_train_variability" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="neurodynex.spike_train_variability.spike_train_variability.Binomial_SampleGenerator">
+<code class="descclassname">neurodynex.spike_train_variability.spike_train_variability.</code><code class="descname">Binomial_SampleGenerator</code><span class="sig-paren">(</span><em>ro</em>, <em>delta_t</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/spike_train_variability/spike_train_variability.html#Binomial_SampleGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.spike_train_variability.spike_train_variability.Binomial_SampleGenerator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.spike_train_variability.spike_train_variability.CDF_values">
+<code class="descclassname">neurodynex.spike_train_variability.spike_train_variability.</code><code class="descname">CDF_values</code><span class="sig-paren">(</span><em>ro</em>, <em>d_t</em>, <em>t</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/spike_train_variability/spike_train_variability.html#CDF_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.spike_train_variability.spike_train_variability.CDF_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.spike_train_variability.spike_train_variability.ExpDist_SampleGenerator">
+<code class="descclassname">neurodynex.spike_train_variability.spike_train_variability.</code><code class="descname">ExpDist_SampleGenerator</code><span class="sig-paren">(</span><em>cdf_values</em>, <em>d_t</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/spike_train_variability/spike_train_variability.html#ExpDist_SampleGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.spike_train_variability.spike_train_variability.ExpDist_SampleGenerator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.spike_train_variability.spike_train_variability.forward_sampling">
+<code class="descclassname">neurodynex.spike_train_variability.spike_train_variability.</code><code class="descname">forward_sampling</code><span class="sig-paren">(</span><em>ro=30</em>, <em>delta_t=0.001</em>, <em>n_spikes=100000</em>, <em>n_bins=30</em>, <em>show_plt=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/spike_train_variability/spike_train_variability.html#forward_sampling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.spike_train_variability.spike_train_variability.forward_sampling" title="Permalink to this definition">¶</a></dt>
+<dd><p>{ro: firing rate, hazard function in HZ
+delta_t:time steps in s
+n_spikes:number of spikes to be generates
+n_bins: number of bins for plotting the histogram
+}</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.spike_train_variability.spike_train_variability.forward_sampling_with_refractoriness">
+<code class="descclassname">neurodynex.spike_train_variability.spike_train_variability.</code><code class="descname">forward_sampling_with_refractoriness</code><span class="sig-paren">(</span><em>ro=30</em>, <em>delta_abs=0.02</em>, <em>delta_t=0.001</em>, <em>n_spikes=100000</em>, <em>n_bins=30</em>, <em>show_plt=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/spike_train_variability/spike_train_variability.html#forward_sampling_with_refractoriness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.spike_train_variability.spike_train_variability.forward_sampling_with_refractoriness" title="Permalink to this definition">¶</a></dt>
+<dd><p>{ro: firing rate, hazard function in HZ
+delta_abs: absolute refractory period in s
+delta_t:time steps in s
+n_spikes:number of spikes to be generates
+n_bins: number of bins for plotting the histogram
+}</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.spike_train_variability.spike_train_variability.inverse_transform_sampling">
+<code class="descclassname">neurodynex.spike_train_variability.spike_train_variability.</code><code class="descname">inverse_transform_sampling</code><span class="sig-paren">(</span><em>ro=30</em>, <em>d_t=0.001</em>, <em>n_spikes=10000</em>, <em>n_bins=30</em>, <em>show_plt=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/spike_train_variability/spike_train_variability.html#inverse_transform_sampling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.spike_train_variability.spike_train_variability.inverse_transform_sampling" title="Permalink to this definition">¶</a></dt>
+<dd><p>{ro: firing rate, hazard function in HZ
+d_t:
+n_spikes:number of spikes to be generates
+n_bins: number of bins for plotting the histogram
+}</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.spike_train_variability.spike_train_variability.inverse_transform_sampling_with_refractoriness">
+<code class="descclassname">neurodynex.spike_train_variability.spike_train_variability.</code><code class="descname">inverse_transform_sampling_with_refractoriness</code><span class="sig-paren">(</span><em>ro=30</em>, <em>delta_abs=0.02</em>, <em>d_t=0.001</em>, <em>n_spikes=100000</em>, <em>n_bins=30</em>, <em>show_plt=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/spike_train_variability/spike_train_variability.html#inverse_transform_sampling_with_refractoriness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.spike_train_variability.spike_train_variability.inverse_transform_sampling_with_refractoriness" title="Permalink to this definition">¶</a></dt>
+<dd><p>{ro: firing rate, hazard function in HZ
+delta_abs: absolute refractory period in s
+d_t:time step used for sampling from CDF of exponential distribution in s
+n_spikes:number of spikes to be generates
+n_bins: number of bins for plotting the histogram
+}</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.spike_train_variability.spike_train_variability.plots">
+<code class="descclassname">neurodynex.spike_train_variability.spike_train_variability.</code><code class="descname">plots</code><span class="sig-paren">(</span><em>ro</em>, <em>delta_t</em>, <em>d_t</em>, <em>d_t_pdf</em>, <em>n_spikes</em>, <em>n_bins</em>, <em>t=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/spike_train_variability/spike_train_variability.html#plots"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.spike_train_variability.spike_train_variability.plots" title="Permalink to this definition">¶</a></dt>
+<dd><p>{ro: firing rate, hazard function in HZ
+delta_t:time step for forward sampling in s
+d_t: time step used for sampling from CDF of exponential distribution in s
+d_t_pdf: time step used for sampling from PDF of exponential distribution in s
+n_spikes:number of spikes to be generates
+n_bins: number of bins for plotting the histogram
+t: time period during which exponential distribution is plotted, in s
+}</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.spike_train_variability.spike_train_variability.plots_with_refractoriness">
+<code class="descclassname">neurodynex.spike_train_variability.spike_train_variability.</code><code class="descname">plots_with_refractoriness</code><span class="sig-paren">(</span><em>ro</em>, <em>delta_abs</em>, <em>delta_t</em>, <em>d_t</em>, <em>d_t_pdf</em>, <em>n_spikes</em>, <em>n_bins</em>, <em>t=0.3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/spike_train_variability/spike_train_variability.html#plots_with_refractoriness"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.spike_train_variability.spike_train_variability.plots_with_refractoriness" title="Permalink to this definition">¶</a></dt>
+<dd><p>{ro: firing rate, hazard function in HZ
+delta_abs: absolute refractory period in s
+delta_t:time step for forward sampling in s
+d_t: time step used for sampling from CDF of exponential distribution in s
+d_t_pdf: time step used for sampling from PDF of exponential distribution in s
+n_spikes:number of spikes to be generates
+n_bins: number of bins for plotting the histogram
+t: time period during which analytical distribution is plotted, in s
+}</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-neurodynex.spike_train_variability">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-neurodynex.spike_train_variability" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="neurodynex.test.html" class="btn btn-neutral float-right" title="neurodynex.test package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="neurodynex.phase_plane_analysis.html" class="btn btn-neutral" title="neurodynex.phase_plane_analysis package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, EPFL-LCN.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.1.dev42+ngbaf1c16.d20161110',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

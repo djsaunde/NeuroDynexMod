@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>neurodynex.spike_train_variability.Chapter7_Ex &mdash; Neuronaldynamics Exercises 0.1.1.dev13+ng9269041.d20160511 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Neuronaldynamics Exercises 0.1.1.dev13+ng9269041.d20160511 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Neuronaldynamics Exercises
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.1.dev13+ng9269041.d20160511
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../exercises/index.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents.html">Python exercise modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licence.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Neuronaldynamics Exercises</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>neurodynex.spike_train_variability.Chapter7_Ex</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for neurodynex.spike_train_variability.Chapter7_Ex</h1><div class="highlight"><pre>
+<span></span><span class="c1">#Computer exercise for chapter 7 of Neuronal Dynamics book</span>
+<span class="c1">#By: Parima Ahmadipour-2016</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+
+<span class="c1">#This function generates a sample from a binomial distribution.</span>
+<span class="c1"># ro*delta_t is the probability that the sample is 1.</span>
+
+<div class="viewcode-block" id="Binomial_SampleGenerator"><a class="viewcode-back" href="../../../modules/neurodynex.spike_train_variability.html#neurodynex.spike_train_variability.Chapter7_Ex.Binomial_SampleGenerator">[docs]</a><span class="k">def</span> <span class="nf">Binomial_SampleGenerator</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span><span class="n">delta_t</span><span class="p">):</span>
+    <span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+    <span class="n">sample</span><span class="o">=</span><span class="mf">0.0</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="o">&lt;=</span> <span class="n">ro</span><span class="o">*</span><span class="n">delta_t</span><span class="p">):</span>
+        <span class="n">sample</span><span class="o">=</span><span class="mf">1.0</span>
+    <span class="k">return</span> <span class="n">sample</span></div>
+
+<span class="c1">#This function generates samples from exponential distribution.</span>
+<div class="viewcode-block" id="ExpDist_SampleGenerator"><a class="viewcode-back" href="../../../modules/neurodynex.spike_train_variability.html#neurodynex.spike_train_variability.Chapter7_Ex.ExpDist_SampleGenerator">[docs]</a><span class="k">def</span> <span class="nf">ExpDist_SampleGenerator</span><span class="p">(</span><span class="n">cdf_values</span><span class="p">,</span><span class="n">d_t</span><span class="p">):</span>
+    <span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+    <span class="n">i</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">cdf_values</span><span class="o">-</span><span class="n">u</span><span class="p">))</span>
+    <span class="n">s</span><span class="o">=</span><span class="n">d_t</span><span class="o">*</span><span class="n">i</span>
+    <span class="k">return</span> <span class="n">s</span></div>
+
+<span class="c1">#This function returns discrete values of Cumulative Distribution Function of exponential distribution.</span>
+<div class="viewcode-block" id="CDF_values"><a class="viewcode-back" href="../../../modules/neurodynex.spike_train_variability.html#neurodynex.spike_train_variability.Chapter7_Ex.CDF_values">[docs]</a><span class="k">def</span> <span class="nf">CDF_values</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span><span class="n">d_t</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">t_steps</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">d_t</span><span class="p">)</span>
+    <span class="n">values</span><span class="o">=</span><span class="mf">1.0</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">ro</span><span class="o">*</span><span class="n">t_steps</span><span class="p">)</span> 
+    <span class="k">return</span> <span class="n">values</span></div>
+    
+
+<span class="c1">#Part 1-a</span>
+<span class="c1">#This function generates n spikes and plots the ISI histogram. </span>
+<span class="c1">#The probability of firing in each time step is ro*delta_t</span>
+<div class="viewcode-block" id="forward_sampling"><a class="viewcode-back" href="../../../modules/neurodynex.spike_train_variability.html#neurodynex.spike_train_variability.Chapter7_Ex.forward_sampling">[docs]</a><span class="k">def</span> <span class="nf">forward_sampling</span><span class="p">(</span><span class="n">ro</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">delta_t</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span><span class="n">n_spikes</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span><span class="n">n_bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">show_plt</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    {ro: firing rate, hazard function in HZ</span>
+<span class="sd">    delta_t:time steps in s</span>
+<span class="sd">    n_spikes:number of spikes to be generates</span>
+<span class="sd">    n_bins: number of bins for plotting the histogram</span>
+<span class="sd">    }</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+      
+    <span class="n">spike_t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+    <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">spike_t</span><span class="p">)</span><span class="o">&lt;</span><span class="n">n_spikes</span><span class="p">):</span>
+        <span class="n">sample</span><span class="o">=</span><span class="n">Binomial_SampleGenerator</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span><span class="n">delta_t</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sample</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">spike_t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spike_t</span><span class="p">,</span><span class="n">i</span><span class="o">*</span><span class="n">delta_t</span><span class="p">)</span>
+        <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">ISI</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">spike_t</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ISI</span><span class="p">,</span><span class="n">n_bins</span><span class="p">,</span><span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span> <span class="p">,</span><span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Forward sampling&#39;</span><span class="p">)</span> <span class="c1">#normed=True, normalizes histogram values.</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">show_plt</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span></div>
+    
+    
+    
+<span class="c1">#Part 1-b</span>
+<div class="viewcode-block" id="inverse_transform_sampling"><a class="viewcode-back" href="../../../modules/neurodynex.spike_train_variability.html#neurodynex.spike_train_variability.Chapter7_Ex.inverse_transform_sampling">[docs]</a><span class="k">def</span> <span class="nf">inverse_transform_sampling</span><span class="p">(</span><span class="n">ro</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">d_t</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span><span class="n">n_spikes</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span><span class="n">n_bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">show_plt</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    {ro: firing rate, hazard function in HZ</span>
+<span class="sd">    d_t:</span>
+<span class="sd">    n_spikes:number of spikes to be generates</span>
+<span class="sd">    n_bins: number of bins for plotting the histogram</span>
+<span class="sd">    }</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="n">ISI</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span> <span class="c1"># array containing Inter Spike Interval values</span>
+    <span class="n">cdf_values</span><span class="o">=</span><span class="n">CDF_values</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span><span class="n">d_t</span><span class="p">,</span><span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> 
+    <span class="k">while</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ISI</span><span class="p">)</span><span class="o">&lt;=</span><span class="n">n_spikes</span><span class="p">):</span>
+        <span class="n">s</span><span class="o">=</span><span class="n">ExpDist_SampleGenerator</span><span class="p">(</span><span class="n">cdf_values</span><span class="p">,</span><span class="n">d_t</span><span class="p">)</span>
+        <span class="n">ISI</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ISI</span><span class="p">,[</span><span class="n">s</span><span class="p">])</span>
+        
+    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ISI</span><span class="p">,</span><span class="n">n_bins</span><span class="p">,</span><span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Inverse transform sampling&#39;</span><span class="p">)</span> <span class="c1">#normed=True, normalizes histogram values.</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">show_plt</span><span class="p">)</span></div>
+<span class="c1">#Part 1-c</span>
+<span class="c1">#This function plots both histograms of part 1-a and 1-b, in addition to the main distribution (exponential distribution)</span>
+<div class="viewcode-block" id="plots"><a class="viewcode-back" href="../../../modules/neurodynex.spike_train_variability.html#neurodynex.spike_train_variability.Chapter7_Ex.plots">[docs]</a><span class="k">def</span> <span class="nf">plots</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span><span class="n">delta_t</span><span class="p">,</span><span class="n">d_t</span><span class="p">,</span><span class="n">d_t_pdf</span><span class="p">,</span><span class="n">n_spikes</span><span class="p">,</span><span class="n">n_bins</span><span class="p">,</span><span class="n">t</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    {ro: firing rate, hazard function in HZ</span>
+<span class="sd">    delta_t:time step for forward sampling in s</span>
+<span class="sd">    d_t: time step used for sampling from CDF of exponential distribution in s</span>
+<span class="sd">    d_t_pdf: time step used for sampling from PDF of exponential distribution in s</span>
+<span class="sd">    n_spikes:number of spikes to be generates</span>
+<span class="sd">    n_bins: number of bins for plotting the histogram</span>
+<span class="sd">    t: time period during which exponential distribution is plotted, in s</span>
+<span class="sd">    }</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">time</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">d_t_pdf</span><span class="p">)</span>
+    <span class="n">prob</span><span class="o">=</span><span class="n">ro</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">ro</span><span class="o">*</span><span class="n">time</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">prob</span><span class="p">,</span><span class="s1">&#39;*-&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Analytical ISI distribution&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ISI distributions&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability density&#39;</span><span class="p">)</span>
+    <span class="n">inverse_transform_sampling</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span><span class="n">d_t</span><span class="p">,</span><span class="n">n_spikes</span><span class="p">,</span><span class="n">n_bins</span><span class="p">,</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">forward_sampling</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span><span class="n">delta_t</span><span class="p">,</span><span class="n">n_spikes</span><span class="p">,</span><span class="n">n_bins</span><span class="p">,</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+    
+    
+<span class="c1">#Part 2-a</span>
+<div class="viewcode-block" id="forward_sampling_with_refractoriness"><a class="viewcode-back" href="../../../modules/neurodynex.spike_train_variability.html#neurodynex.spike_train_variability.Chapter7_Ex.forward_sampling_with_refractoriness">[docs]</a><span class="k">def</span> <span class="nf">forward_sampling_with_refractoriness</span><span class="p">(</span><span class="n">ro</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">delta_abs</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span><span class="n">delta_t</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span><span class="n">n_spikes</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span><span class="n">n_bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">show_plt</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    {ro: firing rate, hazard function in HZ</span>
+<span class="sd">    delta_abs: absolute refractory period in s</span>
+<span class="sd">    delta_t:time steps in s</span>
+<span class="sd">    n_spikes:number of spikes to be generates</span>
+<span class="sd">    n_bins: number of bins for plotting the histogram</span>
+<span class="sd">    }</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">spike_t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">])</span> <span class="c1">#Array storing spike times in s</span>
+    <span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">spike_t</span><span class="p">)</span>
+    <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">last_spike_t</span><span class="o">=</span><span class="mf">0.0</span> <span class="c1">#Stores the time when the last spike has occured</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">spike_t</span><span class="p">)</span><span class="o">&lt;=</span><span class="n">n_spikes</span><span class="p">):</span>
+        <span class="n">sample</span><span class="o">=</span><span class="n">Binomial_SampleGenerator</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span><span class="n">delta_t</span><span class="p">)</span>
+        <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="c1">#step counter</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">sample</span><span class="o">==</span><span class="mf">1.0</span><span class="p">):</span>
+            <span class="n">last_spike_t</span><span class="o">=</span><span class="n">i</span><span class="o">*</span><span class="n">delta_t</span><span class="o">+</span><span class="n">delta_abs</span><span class="o">+</span><span class="n">last_spike_t</span> <span class="c1">#update of last spike time</span>
+            <span class="n">spike_t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spike_t</span><span class="p">,</span><span class="n">last_spike_t</span><span class="p">)</span> <span class="c1">#update of array storing spikes</span>
+            <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">print</span> <span class="n">spike_t</span>
+    <span class="n">ISI</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">spike_t</span><span class="p">)</span> <span class="c1">#Array containing Inter Spike Interval</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ISI</span><span class="p">,</span><span class="n">n_bins</span><span class="p">,</span><span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Forward sampling&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">show_plt</span><span class="p">)</span></div>
+
+<span class="c1">#Part 2-b</span>
+<div class="viewcode-block" id="inverse_transform_sampling_with_refractoriness"><a class="viewcode-back" href="../../../modules/neurodynex.spike_train_variability.html#neurodynex.spike_train_variability.Chapter7_Ex.inverse_transform_sampling_with_refractoriness">[docs]</a><span class="k">def</span> <span class="nf">inverse_transform_sampling_with_refractoriness</span><span class="p">(</span><span class="n">ro</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">delta_abs</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span><span class="n">d_t</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span><span class="n">n_spikes</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span><span class="n">n_bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">show_plt</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    {ro: firing rate, hazard function in HZ</span>
+<span class="sd">    delta_abs: absolute refractory period in s</span>
+<span class="sd">    d_t:time step used for sampling from CDF of exponential distribution in s</span>
+<span class="sd">    n_spikes:number of spikes to be generates</span>
+<span class="sd">    n_bins: number of bins for plotting the histogram</span>
+<span class="sd">    }</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">ISI</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span> <span class="c1">#Array storing Inter Spike Interval</span>
+    <span class="n">cdf_values</span><span class="o">=</span><span class="n">CDF_values</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span><span class="n">d_t</span><span class="p">,</span><span class="n">t</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ISI</span><span class="p">)</span><span class="o">&lt;</span><span class="n">n_spikes</span><span class="p">):</span>
+        <span class="n">s</span><span class="o">=</span><span class="n">ExpDist_SampleGenerator</span><span class="p">(</span><span class="n">cdf_values</span><span class="p">,</span><span class="n">d_t</span><span class="p">)</span><span class="o">+</span><span class="n">delta_abs</span>
+        <span class="n">ISI</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ISI</span><span class="p">,[</span><span class="n">s</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ISI</span><span class="p">,</span><span class="n">n_bins</span><span class="p">,</span><span class="n">normed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Inverse transform sampling&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">)</span></div>
+<span class="c1">#Part 2-c</span>
+
+<span class="c1">##This function plots both histograms of part 2-a and 2-b, in addition to the analytical ISI distribution</span>
+<div class="viewcode-block" id="plots_with_refractoriness"><a class="viewcode-back" href="../../../modules/neurodynex.spike_train_variability.html#neurodynex.spike_train_variability.Chapter7_Ex.plots_with_refractoriness">[docs]</a><span class="k">def</span> <span class="nf">plots_with_refractoriness</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span><span class="n">delta_abs</span><span class="p">,</span><span class="n">delta_t</span><span class="p">,</span><span class="n">d_t</span><span class="p">,</span><span class="n">d_t_pdf</span><span class="p">,</span><span class="n">n_spikes</span><span class="p">,</span><span class="n">n_bins</span><span class="p">,</span><span class="n">t</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    {ro: firing rate, hazard function in HZ</span>
+<span class="sd">    delta_abs: absolute refractory period in s</span>
+<span class="sd">    delta_t:time step for forward sampling in s</span>
+<span class="sd">    d_t: time step used for sampling from CDF of exponential distribution in s</span>
+<span class="sd">    d_t_pdf: time step used for sampling from PDF of exponential distribution in s</span>
+<span class="sd">    n_spikes:number of spikes to be generates</span>
+<span class="sd">    n_bins: number of bins for plotting the histogram</span>
+<span class="sd">    t: time period during which analytical distribution is plotted, in s</span>
+<span class="sd">    }</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    
+    <span class="n">t1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">delta_abs</span><span class="p">,</span><span class="n">delta_t</span><span class="p">)</span>
+    <span class="n">t2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">d_t_pdf</span><span class="p">)</span>
+    <span class="n">p1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">delta_abs</span><span class="o">/</span><span class="n">delta_t</span><span class="p">))</span>
+    <span class="n">p2</span><span class="o">=</span><span class="n">ro</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">ro</span><span class="o">*</span><span class="n">t2</span><span class="p">)</span>
+    <span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="o">+</span><span class="n">delta_abs</span><span class="p">)</span><span class="c1"># time points used in plotting analytical ISI distribution</span>
+    <span class="n">p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">)</span> <span class="c1"># probability density points used in plotting analytical ISI distribution</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="s1">&#39;*-&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Analytical ISI distribution&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ISI distributions with refractoriness&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability density&#39;</span><span class="p">)</span>
+    <span class="n">forward_sampling_with_refractoriness</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span><span class="n">delta_abs</span><span class="p">,</span><span class="n">delta_t</span><span class="p">,</span><span class="n">n_spikes</span><span class="p">,</span><span class="n">n_bins</span><span class="p">,</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">inverse_transform_sampling_with_refractoriness</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span><span class="n">delta_abs</span><span class="p">,</span><span class="n">d_t</span><span class="p">,</span><span class="n">n_spikes</span><span class="p">,</span><span class="n">n_bins</span><span class="p">,</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+
+
+<span class="c1">#Test for part 1-a:</span>
+<span class="c1">#forward_sampling(30,0.01,100000,30)</span>
+
+<span class="c1">#Test for part 1-b:</span>
+<span class="c1">#inverse_transform_sampling(ro=30,d_t=0.001,n_spikes=10000,n_bins=30)</span>
+
+<span class="c1">#Test for part 1-c:</span>
+<span class="c1">#plots(30,0.001,0.001,0.01,10000,30,0.15)</span>
+
+<span class="c1">#Test for part 2-a</span>
+<span class="c1">#forward_sampling_with_refractoriness(30,0.2,0.001,100000,30,True)</span>
+
+<span class="c1">#Test for part 2-b</span>
+<span class="c1">#inverse_transform_sampling_with_refractoriness(30,0.02,0.001,100000,30,0.3,show_plt=True)</span>
+
+<span class="c1">#Test for part 2-c</span>
+<span class="n">plots_with_refractoriness</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.001</span><span class="p">,</span><span class="mf">0.001</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, EPFL-LCN.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.1.dev13+ng9269041.d20160511',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

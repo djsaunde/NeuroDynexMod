@@ -1,0 +1,494 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>neurodynex.tools package &mdash; Neuronaldynamics Exercises 0.1.1.dev42+ngbaf1c16.d20161110 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Neuronaldynamics Exercises 0.1.1.dev42+ngbaf1c16.d20161110 documentation" href="../index.html"/>
+        <link rel="up" title="neurodynex package" href="neurodynex.html"/>
+        <link rel="next" title="License" href="../licence.html"/>
+        <link rel="prev" title="neurodynex.test package" href="neurodynex.test.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Neuronaldynamics Exercises
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.1.dev42+ngbaf1c16.d20161110
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exercises/index.html">Exercises</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../contents.html">Python exercise modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="neurodynex.html">neurodynex package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="neurodynex.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.adex_model.html">neurodynex.adex_model package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.cable_equation.html">neurodynex.cable_equation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.exponential_integrate_fire.html">neurodynex.exponential_integrate_fire package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.hodgkin_huxley.html">neurodynex.hodgkin_huxley package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.hopfield_network.html">neurodynex.hopfield_network package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.leaky_integrate_and_fire.html">neurodynex.leaky_integrate_and_fire package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.neuron_type.html">neurodynex.neuron_type package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.ojas_rule.html">neurodynex.ojas_rule package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.phase_plane_analysis.html">neurodynex.phase_plane_analysis package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.spike_train_variability.html">neurodynex.spike_train_variability package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="neurodynex.test.html">neurodynex.test package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">neurodynex.tools package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="neurodynex.html#module-neurodynex">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../licence.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Neuronaldynamics Exercises</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../contents.html">Python exercise modules</a> &raquo;</li>
+      
+          <li><a href="neurodynex.html">neurodynex package</a> &raquo;</li>
+      
+    <li>neurodynex.tools package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/modules/neurodynex.tools.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="neurodynex-tools-package">
+<h1>neurodynex.tools package<a class="headerlink" href="#neurodynex-tools-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-neurodynex.tools.input_factory">
+<span id="neurodynex-tools-input-factory-module"></span><h2>neurodynex.tools.input_factory module<a class="headerlink" href="#module-neurodynex.tools.input_factory" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="neurodynex.tools.input_factory.get_ramp_current">
+<code class="descclassname">neurodynex.tools.input_factory.</code><code class="descname">get_ramp_current</code><span class="sig-paren">(</span><em>t_start</em>, <em>t_end</em>, <em>unit_time</em>, <em>amplitude_start</em>, <em>amplitude_end</em>, <em>append_zero=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/tools/input_factory.html#get_ramp_current"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.tools.input_factory.get_ramp_current" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a ramp current. If t_start == t_end, then ALL entries are 0.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>t_start</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; start of the ramp</li>
+<li><strong>t_end</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; end of the ramp</li>
+<li><strong>unit_time</strong> (<em>Brian2 unit</em>) &#8211; unit of t_start and t_end. e.g. 0.1*brian2.ms</li>
+<li><strong>amplitude_start</strong> (<em>Quantity</em>) &#8211; amplitude of the ramp at t_start. e.g. 3.5*brian2.uamp</li>
+<li><strong>amplitude_end</strong> (<em>Quantity</em>) &#8211; amplitude of the ramp at t_end. e.g. 4.5*brian2.uamp</li>
+<li><strong>append_zero</strong> (<em>bool, optional</em>) &#8211; if true, 0Amp is appended at t_end+1.
+Without that trailing 0, Brian reads out the last value in the
+array (=amplitude_end) for all indices &gt; t_end.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Brian2.TimedArray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">TimedArray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.tools.input_factory.get_sinusoidal_current">
+<code class="descclassname">neurodynex.tools.input_factory.</code><code class="descname">get_sinusoidal_current</code><span class="sig-paren">(</span><em>t_start</em>, <em>t_end</em>, <em>unit_time</em>, <em>amplitude</em>, <em>frequency</em>, <em>direct_current</em>, <em>phase_offset=0.0</em>, <em>append_zero=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/tools/input_factory.html#get_sinusoidal_current"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.tools.input_factory.get_sinusoidal_current" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a sinusoidal current. If t_start == t_end, then ALL entries are 0.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>t_start</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; start of the sine wave</li>
+<li><strong>t_end</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; end of the sine wave</li>
+<li><strong>unit_time</strong> (<em>Quantity, Time</em>) &#8211; unit of t_start and t_end. e.g. 0.1*brian2.ms</li>
+<li><strong>amplitude</strong> (<em>Quantity, Current</em>) &#8211; maximum amplitude of the sinus e.g. 3.5*brian2.uamp</li>
+<li><strong>frequency</strong> (<em>Quantity, Hz</em>) &#8211; Frequency of the sine. e.g. 0.5*brian2.kHz</li>
+<li><strong>direct_current</strong> (<em>Quantity, Current</em>) &#8211; DC-component (=offset) of the current</li>
+<li><strong>phase_offset</strong> (<em>float, Optional</em>) &#8211; phase at t_start. Default = 0.</li>
+<li><strong>append_zero</strong> (<em>bool, optional</em>) &#8211; if true, 0Amp is appended at t_end+1. Without that
+trailing 0, Brian reads out the last value in the array for all indices &gt; t_end.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Brian2.TimedArray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">TimedArray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.tools.input_factory.get_spikes_current">
+<code class="descclassname">neurodynex.tools.input_factory.</code><code class="descname">get_spikes_current</code><span class="sig-paren">(</span><em>t_spikes</em>, <em>unit_time</em>, <em>amplitude</em>, <em>append_zero=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/tools/input_factory.html#get_spikes_current"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.tools.input_factory.get_spikes_current" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a two dimensional TimedArray wich has one column for each value in t_spikes.
+All values in each column are 0 except one, the spike time as specified in t_spikes is set to amplitude.
+Note: This function is provided to easily insert pulse currents into a cable. For other use of
+spike input, search the Brian2 documentation for SpikeGeneration.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>t_spikes</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; list of spike times</li>
+<li><strong>unit_time</strong> (<em>Quantity, Time</em>) &#8211; unit of t_spikes . e.g. 1*brian2.ms</li>
+<li><strong>amplitude</strong> (<em>Quantity, Current</em>) &#8211; amplitude of the spike. All spikes have the sampe amplitude</li>
+<li><strong>append_zero</strong> (<em>bool, optional</em>) &#8211; if true, 0Amp is appended at t_end+1. Without that trailing 0,</li>
+<li><strong>reads out the last value in the array for all indices &gt; t_end.</strong> (<em>Brian</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Brian2.TimedArray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">TimedArray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.tools.input_factory.get_step_current">
+<code class="descclassname">neurodynex.tools.input_factory.</code><code class="descname">get_step_current</code><span class="sig-paren">(</span><em>t_start</em>, <em>t_end</em>, <em>unit_time</em>, <em>amplitude</em>, <em>append_zero=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/tools/input_factory.html#get_step_current"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.tools.input_factory.get_step_current" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a step current. If t_start == t_end, then a single
+entry in the values array is set to amplitude.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>t_start</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; start of the step</li>
+<li><strong>t_end</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; end of the step</li>
+<li><strong>unit_time</strong> (<em>Brian2 unit</em>) &#8211; unit of t_start and t_end. e.g. 0.1*brian2.ms</li>
+<li><strong>amplitude</strong> (<em>Quantity</em>) &#8211; amplitude of the step. e.g. 3.5*brian2.uamp</li>
+<li><strong>append_zero</strong> (<em>bool, optional</em>) &#8211; if true, 0Amp is appended at t_end+1.</li>
+<li><strong>that trailing 0, Brian reads out the last value in the array</strong> (<em>Without</em>) &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Brian2.TimedArray</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">TimedArray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.tools.input_factory.get_zero_current">
+<code class="descclassname">neurodynex.tools.input_factory.</code><code class="descname">get_zero_current</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/tools/input_factory.html#get_zero_current"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.tools.input_factory.get_zero_current" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a TimedArray with one entry: 0 Amp</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">TimedArray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.tools.input_factory.getting_started">
+<code class="descclassname">neurodynex.tools.input_factory.</code><code class="descname">getting_started</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/tools/input_factory.html#getting_started"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.tools.input_factory.getting_started" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.tools.input_factory.plot_ramp_current_example">
+<code class="descclassname">neurodynex.tools.input_factory.</code><code class="descname">plot_ramp_current_example</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/tools/input_factory.html#plot_ramp_current_example"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.tools.input_factory.plot_ramp_current_example" title="Permalink to this definition">¶</a></dt>
+<dd><p>Example for get_ramp_current
+Returns:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.tools.input_factory.plot_sinusoidal_current_example">
+<code class="descclassname">neurodynex.tools.input_factory.</code><code class="descname">plot_sinusoidal_current_example</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/tools/input_factory.html#plot_sinusoidal_current_example"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.tools.input_factory.plot_sinusoidal_current_example" title="Permalink to this definition">¶</a></dt>
+<dd><p>Example for get_sinusoidal_current
+Returns:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.tools.input_factory.plot_step_current_example">
+<code class="descclassname">neurodynex.tools.input_factory.</code><code class="descname">plot_step_current_example</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/tools/input_factory.html#plot_step_current_example"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.tools.input_factory.plot_step_current_example" title="Permalink to this definition">¶</a></dt>
+<dd><p>Example for get_step_current
+Returns:</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-neurodynex.tools.plot_tools">
+<span id="neurodynex-tools-plot-tools-module"></span><h2>neurodynex.tools.plot_tools module<a class="headerlink" href="#module-neurodynex.tools.plot_tools" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="neurodynex.tools.plot_tools.plot_voltage_and_current_traces">
+<code class="descclassname">neurodynex.tools.plot_tools.</code><code class="descname">plot_voltage_and_current_traces</code><span class="sig-paren">(</span><em>voltage_monitor</em>, <em>current</em>, <em>title=None</em>, <em>firing_threshold=None</em>, <em>do_show_plot=True</em>, <em>legend_location=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/tools/plot_tools.html#plot_voltage_and_current_traces"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.tools.plot_tools.plot_voltage_and_current_traces" title="Permalink to this definition">¶</a></dt>
+<dd><p>plots voltage and current .</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>voltage_monitor</strong> (<em>StateMonitor</em>) &#8211; recorded voltage</li>
+<li><strong>current</strong> (<em>TimedArray</em>) &#8211; injected current</li>
+<li><strong>title</strong> (<em>string, optional</em>) &#8211; title of the figure</li>
+<li><strong>firing_threshold</strong> (<em>Quantity, optional</em>) &#8211; if set to a value, the firing threshold is plotted.</li>
+<li><strong>do_show_plot</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) &#8211; optional, default=True. Set it to False to suppress the blocking pyplot.show() call.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-neurodynex.tools.spike_tools">
+<span id="neurodynex-tools-spike-tools-module"></span><h2>neurodynex.tools.spike_tools module<a class="headerlink" href="#module-neurodynex.tools.spike_tools" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="neurodynex.tools.spike_tools.get_spike_stats">
+<code class="descclassname">neurodynex.tools.spike_tools.</code><code class="descname">get_spike_stats</code><span class="sig-paren">(</span><em>voltage_monitor</em>, <em>spike_threshold</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/tools/spike_tools.html#get_spike_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.tools.spike_tools.get_spike_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detects spike times and computes ISI, mean ISI and firing frequency.
+Note: meanISI and firing frequency are set to numpy.nan if less than two spikes are detected
+Note: currently only the spike times of the first column in voltage_monitor are detected. Matrix-like
+monitors are not supported.
+:param voltage_monitor: A state monitor with at least the fields &#8220;v: and &#8220;t&#8221;
+:type voltage_monitor: StateMonitor
+:param spike_threshold: The spike threshold voltage. e.g. -50*b2.mV
+:type spike_threshold: Quantity</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">(nr_of_spikes, spike_times, isi, mean_isi, spike_rate)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)">tuple</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.tools.spike_tools.get_spike_time">
+<code class="descclassname">neurodynex.tools.spike_tools.</code><code class="descname">get_spike_time</code><span class="sig-paren">(</span><em>voltage_monitor</em>, <em>spike_threshold</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/tools/spike_tools.html#get_spike_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.tools.spike_tools.get_spike_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detects the spike times in the voltage. The spike time is the value in voltage_monitor.t for
+which voltage_monitor.v[idx] is above threshold AND voltage_monitor.v[idx-1] is below threshold
+(crossing from below).
+Note: currently only the spike times of the first column in voltage_monitor are detected. Matrix-like
+monitors are not supported.
+:param voltage_monitor: A state monitor with at least the fields &#8220;v: and &#8220;t&#8221;
+:type voltage_monitor: StateMonitor
+:param spike_threshold: The spike threshold voltage. e.g. -50*b2.mV
+:type spike_threshold: Quantity</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of spike times (Quantity)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="neurodynex.tools.spike_tools.pretty_print_spike_train_stats">
+<code class="descclassname">neurodynex.tools.spike_tools.</code><code class="descname">pretty_print_spike_train_stats</code><span class="sig-paren">(</span><em>voltage_monitor</em>, <em>spike_threshold</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/neurodynex/tools/spike_tools.html#pretty_print_spike_train_stats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#neurodynex.tools.spike_tools.pretty_print_spike_train_stats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes and returns the same values as get_spike_stats. Additionally prints these values to the console.
+:param voltage_monitor:
+:param spike_threshold:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">(nr_of_spikes, spike_times, isi, mean_isi, spike_rate)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)">tuple</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-neurodynex.tools">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-neurodynex.tools" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../licence.html" class="btn btn-neutral float-right" title="License" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="neurodynex.test.html" class="btn btn-neutral" title="neurodynex.test package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, EPFL-LCN.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.1.dev42+ngbaf1c16.d20161110',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

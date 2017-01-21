@@ -1,0 +1,321 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6. Numerical integration of the HH model of the squid axon &mdash; Neuronaldynamics Exercises 0.1.1.dev42+ngbaf1c16.d20161110 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Neuronaldynamics Exercises 0.1.1.dev42+ngbaf1c16.d20161110 documentation" href="../index.html"/>
+        <link rel="up" title="Exercises" href="index.html"/>
+        <link rel="next" title="7. FitzHugh-Nagumo: Phase plane and bifurcation analysis" href="phase-plane-analysis.html"/>
+        <link rel="prev" title="5. Dendrites and the (passive) cable equation" href="passive-cable.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Neuronaldynamics Exercises
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.1.dev42+ngbaf1c16.d20161110
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Exercises</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="setup.html">1. Setting up Python and Brian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exponential-integrate-and-fire.html">2. The Exponential Integrate-and-Fire model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leaky-integrate-and-fire.html">3. Leaky-integrate-and-fire model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adex-model.html">4. AdEx: the Adaptive Exponential Integrate-and-Fire model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="passive-cable.html">5. Dendrites and the (passive) cable equation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6. Numerical integration of the HH model of the squid axon</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exercise">6.1. Exercise</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#question">6.1.1. Question</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">6.1.2. Question</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-slow-and-fast-ramp-current">6.2. Exercise: slow and fast ramp current</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">6.2.1. Question</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">6.2.2. Question</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">6.2.3. Question</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-rebound-spike">6.3. Exercise: Rebound Spike</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">6.3.1. Question</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exercise-brian-implementation-of-a-hh-neuron">6.4. Exercise: Brian implementation of a HH neuron</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">6.4.1. Question</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="phase-plane-analysis.html">7. FitzHugh-Nagumo: Phase plane and bifurcation analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="neuron-type.html">8. Type I and type II neuron models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hopfield-network.html">9. Hopfield Network model of associative memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ojas-rule.html">10. Oja&#8217;s hebbian learning rule</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contents.html">Python exercise modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licence.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Neuronaldynamics Exercises</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Exercises</a> &raquo;</li>
+      
+    <li>6. Numerical integration of the HH model of the squid axon</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/exercises/hodgkin-huxley.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="numerical-integration-of-the-hh-model-of-the-squid-axon">
+<h1>6. Numerical integration of the HH model of the squid axon<a class="headerlink" href="#numerical-integration-of-the-hh-model-of-the-squid-axon" title="Permalink to this headline">¶</a></h1>
+<p><strong>Book chapters</strong></p>
+<p>See <a class="reference external" href="http://neuronaldynamics.epfl.ch/online/Ch2.S2.html">Chapter 2 Section 2</a> on general information about
+the Hodgkin-Huxley equations and models.</p>
+<p><strong>Python classes</strong></p>
+<p>The <a class="reference internal" href="../modules/neurodynex.hodgkin_huxley.html#module-neurodynex.hodgkin_huxley.HH" title="neurodynex.hodgkin_huxley.HH"><code class="xref py py-mod docutils literal"><span class="pre">hodgkin_huxley.HH</span></code></a> module contains all code required for this exercise. It implements a Hodgkin-Huxley neuron model
+At the beginning of your exercise solutions, import the modules and run the demo function.</p>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>  <span class="c1"># needed in Jupyter notebooks, not in Python scripts.</span>
+<span class="kn">import</span> <span class="nn">brian2</span> <span class="kn">as</span> <span class="nn">b2</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">neurodynex.hodgkin_huxley</span> <span class="kn">import</span> <span class="n">HH</span>
+<span class="kn">from</span> <span class="nn">neurodynex.tools</span> <span class="kn">import</span> <span class="n">input_factory</span>
+
+<span class="n">HH</span><span class="o">.</span><span class="n">getting_started</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="figure align-center" id="id7">
+<a class="reference internal image-reference" href="../_images/HH_getting_started.png"><img alt="../_images/HH_getting_started.png" src="../_images/HH_getting_started.png" style="width: 480.0px; height: 360.0px;" /></a>
+<p class="caption"><span class="caption-text">Step current injection into a Hodgkin-Huxley neuron</span></p>
+</div>
+<div class="section" id="exercise">
+<h2>6.1. Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<p>We study the response of a Hodgkin-Huxley neuron to different input currents. Have a look at the documentation of the functions <a class="reference internal" href="../modules/neurodynex.hodgkin_huxley.html#neurodynex.hodgkin_huxley.HH.simulate_HH_neuron" title="neurodynex.hodgkin_huxley.HH.simulate_HH_neuron"><code class="xref py py-func docutils literal"><span class="pre">HH.simulate_HH_neuron()</span></code></a> and <a class="reference internal" href="../modules/neurodynex.hodgkin_huxley.html#neurodynex.hodgkin_huxley.HH.plot_data" title="neurodynex.hodgkin_huxley.HH.plot_data"><code class="xref py py-func docutils literal"><span class="pre">HH.plot_data()</span></code></a> and the module <a class="reference internal" href="../modules/neurodynex.tools.html#module-neurodynex.tools.input_factory" title="neurodynex.tools.input_factory"><code class="xref py py-mod docutils literal"><span class="pre">neurodynex.tools.input_factory</span></code></a></p>
+<div class="section" id="question">
+<h3>6.1.1. Question<a class="headerlink" href="#question" title="Permalink to this headline">¶</a></h3>
+<p>What is the lowest <strong>step current</strong> amplitude I_min for generating at least one spike?</p>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="n">current</span> <span class="o">=</span> <span class="n">input_factory</span><span class="o">.</span><span class="n">get_step_current</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">b2</span><span class="o">.</span><span class="n">ms</span><span class="p">,</span> <span class="n">I_min</span> <span class="o">*</span><span class="n">b2</span><span class="o">.</span><span class="n">uA</span><span class="p">)</span>
+<span class="n">state_monitor</span> <span class="o">=</span> <span class="n">HH</span><span class="o">.</span><span class="n">simulate_HH_neuron</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="mi">120</span> <span class="o">*</span> <span class="n">b2</span><span class="o">.</span><span class="n">ms</span><span class="p">)</span>
+<span class="n">HH</span><span class="o">.</span><span class="n">plot_data</span><span class="p">(</span><span class="n">state_monitor</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;HH Neuron, minimal current&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>6.1.2. Question<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>What is the lowest step current amplitude to generate repetitive firing?</p>
+</div>
+</div>
+<div class="section" id="exercise-slow-and-fast-ramp-current">
+<h2>6.2. Exercise: slow and fast ramp current<a class="headerlink" href="#exercise-slow-and-fast-ramp-current" title="Permalink to this headline">¶</a></h2>
+<p>The minimal current to elicit a spike does not just depend on the amplitude I or on the total charge Q of the current, but on the &#8220;shape&#8221; of the current. Let&#8217;s see why:</p>
+<div class="section" id="id2">
+<h3>6.2.1. Question<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Inject a slow ramp current into a HH neuron. The current has amplitude 0A at t in [0, 5] ms and linearly increases to an amplitude I_min_slow at t=50ms. At t&gt;50ms, the current is set to 0A. What is the minimal amplitude I_min_slow to trigger one spike (vm&gt;50mV)?</p>
+</div>
+<div class="section" id="id3">
+<h3>6.2.2. Question<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Now inject a fast ramp current into a HH neuron. The current has amplitude 0 at t in [0, 5] ms and linearly increases to an amplitude I_min_fast at t=10ms. At t&gt;10ms, the current is set to 0A. What is the minimal amplitude I_min_fast to trigger one spike? Note: for a short ramp, the one milliseconds resolution for the current is not enough. You can create a more fine resolution:</p>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="n">fast_ramp_current</span> <span class="o">=</span> <span class="n">input_factory</span><span class="o">.</span><span class="n">get_ramp_current</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">b2</span><span class="o">.</span><span class="n">ms</span><span class="p">,</span> <span class="mf">0.</span><span class="o">*</span><span class="n">b2</span><span class="o">.</span><span class="n">uA</span><span class="p">,</span> <span class="n">I_min_fast</span> <span class="o">*</span><span class="n">b2</span><span class="o">.</span><span class="n">uA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>6.2.3. Question<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Compare the two previous results. By looking at the activation variables, can you explain the differences in that &#8220;current threshold&#8221;?</p>
+</div>
+</div>
+<div class="section" id="exercise-rebound-spike">
+<h2>6.3. Exercise: Rebound Spike<a class="headerlink" href="#exercise-rebound-spike" title="Permalink to this headline">¶</a></h2>
+<p>A HH neuron can spike not only if it receives a sufficiently strong depolarizing input current but also after a hyperpolarizing current. Such a spike is called a <em>rebound spike</em>.</p>
+<div class="section" id="id5">
+<h3>6.3.1. Question<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Inject a hyperpolarizing step current <code class="docutils literal"><span class="pre">I_amp</span> <span class="pre">=</span> <span class="pre">-1</span> <span class="pre">uA</span></code> for 20ms into the HH neuron. Simulate the neuron for 50 ms and plot the voltage trace and the gating variables. Repeat the simulation with <code class="docutils literal"><span class="pre">I_amp</span> <span class="pre">=</span> <span class="pre">-5</span> <span class="pre">uA</span></code>  What is happening here? To which gating variable do you attribute this rebound spike?</p>
+</div>
+</div>
+<div class="section" id="exercise-brian-implementation-of-a-hh-neuron">
+<h2>6.4. Exercise: Brian implementation of a HH neuron<a class="headerlink" href="#exercise-brian-implementation-of-a-hh-neuron" title="Permalink to this headline">¶</a></h2>
+<p>In this exercise you will learn to work with the Brian2 model equations. To do so, get the source code of the function  <a class="reference internal" href="../modules/neurodynex.hodgkin_huxley.html#neurodynex.hodgkin_huxley.HH.simulate_HH_neuron" title="neurodynex.hodgkin_huxley.HH.simulate_HH_neuron"><code class="xref py py-func docutils literal"><span class="pre">HH.simulate_HH_neuron()</span></code></a> (follow the link to the documentation and then click on the [source] link). Copy the function code and paste it into your Jupyter Notebook. Change the function name from simulate_HH_neuron to a name of your choice, for example simulate_modified_HH_neuron(). Have a look at the source code and find the conductance parameters gK and gNa.</p>
+<div class="section" id="id6">
+<h3>6.4.1. Question<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>In the source code of your function simulate_modified_HH_neuron, change the density of sodium channels. Increase it by a factor of 1.5. Stimulate this modified neuron with a step current.</p>
+<ul class="simple">
+<li>What is the current threshold for repetitive spiking? Explain.</li>
+<li>What is the resting potential of the neuron? Explain.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="phase-plane-analysis.html" class="btn btn-neutral float-right" title="7. FitzHugh-Nagumo: Phase plane and bifurcation analysis" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="passive-cable.html" class="btn btn-neutral" title="5. Dendrites and the (passive) cable equation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, EPFL-LCN.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.1.dev42+ngbaf1c16.d20161110',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

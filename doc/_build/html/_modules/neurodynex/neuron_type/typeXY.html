@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>neurodynex.neuron_type.typeXY &mdash; Neuronaldynamics Exercises 0.1.1.dev13+ng9269041.d20160511 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Neuronaldynamics Exercises 0.1.1.dev13+ng9269041.d20160511 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Neuronaldynamics Exercises
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.1.dev13+ng9269041.d20160511
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../exercises/index.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contents.html">Python exercise modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licence.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">Neuronaldynamics Exercises</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>neurodynex.neuron_type.typeXY</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for neurodynex.neuron_type.typeXY</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module has two neuron models, NeuronX and NeuronY.</span>
+<span class="sd">One of them is Type I, the other is Type II - the assignment</span>
+<span class="sd">is randomly generated when the module is loaded.</span>
+
+<span class="sd">Relevant book chapters:</span>
+
+<span class="sd">- http://neuronaldynamics.epfl.ch/online/Ch4.S4.html</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># This file is part of the exercise code repository accompanying</span>
+<span class="c1"># the book: Neuronal Dynamics (see http://neuronaldynamics.epfl.ch)</span>
+<span class="c1"># located at http://github.com/EPFL-LCN/neuronaldynamics-exercises.</span>
+
+<span class="c1"># This free software: you can redistribute it and/or modify it under</span>
+<span class="c1"># the terms of the GNU General Public License 2.0 as published by the</span>
+<span class="c1"># Free Software Foundation. You should have received a copy of the</span>
+<span class="c1"># GNU General Public License along with the repository. If not,</span>
+<span class="c1"># see http://www.gnu.org/licenses/.</span>
+
+<span class="c1"># Should you reuse and publish the code for your own purposes,</span>
+<span class="c1"># please cite the book or point to the webpage http://neuronaldynamics.epfl.ch.</span>
+
+<span class="c1"># Wulfram Gerstner, Werner M. Kistler, Richard Naud, and Liam Paninski.</span>
+<span class="c1"># Neuronal Dynamics: From Single Neurons to Networks and Models of Cognition.</span>
+<span class="c1"># Cambridge University Press, 2014.</span>
+
+<span class="kn">from</span> <span class="nn">.neurons</span> <span class="kn">import</span> <span class="n">NeuronTypeOne</span><span class="p">,</span> <span class="n">NeuronTypeTwo</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">shuffle</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+
+
+<div class="viewcode-block" id="create_models"><a class="viewcode-back" href="../../../modules/neurodynex.neuron_type.html#neurodynex.neuron_type.typeXY.create_models">[docs]</a><span class="k">def</span> <span class="nf">create_models</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Creates classes NeuronX and NeuronY in this module</span>
+<span class="sd">    that are random assignments of Type1 and Type2 neuron</span>
+<span class="sd">    models.&quot;&quot;&quot;</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Re-assigning Type1 and Type2 neuron models &quot;</span>
+          <span class="s2">&quot;randomly to classes NeuronX and NeuronY.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># get a random assignment for X and Y</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">shuffle</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+
+    <span class="n">suffixes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">]</span>
+    <span class="n">thismodule</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">__name__</span><span class="p">]</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">NeuronTypeOne</span><span class="p">,</span> <span class="n">NeuronTypeTwo</span><span class="p">]</span>
+
+    <span class="c1"># for each of these, assign classes in this module</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">order</span><span class="p">):</span>
+        <span class="n">scname</span> <span class="o">=</span> <span class="s1">&#39;Neuron</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">suffixes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">sc</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">scname</span><span class="p">,</span> <span class="p">(</span><span class="n">classes</span><span class="p">[</span><span class="n">o</span><span class="p">],),</span> <span class="p">{})</span>
+
+        <span class="c1"># classmethod to get the actual neuron type</span>
+        <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getmro</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">docstr</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Returns the underlying neuron type.</span>
+
+<span class="s2">        Returns:</span>
+<span class="s2">            type: Class of the underlying neuron model</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+        <span class="n">func</span><span class="o">.</span><span class="n">__doc__</span> <span class="o">=</span> <span class="n">docstr</span>
+        <span class="n">sc</span><span class="o">.</span><span class="n">get_neuron_type</span> <span class="o">=</span> <span class="nb">classmethod</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">thismodule</span><span class="p">,</span> <span class="n">scname</span><span class="p">,</span> <span class="n">sc</span><span class="p">)</span>
+</div>
+<span class="n">create_models</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, EPFL-LCN.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1.1.dev13+ng9269041.d20160511',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

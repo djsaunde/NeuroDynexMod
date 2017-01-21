@@ -1,0 +1,279 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Setting up Python and Brian &mdash; Neuronaldynamics Exercises 0.1.1.dev42+ngbaf1c16.d20161110 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Neuronaldynamics Exercises 0.1.1.dev42+ngbaf1c16.d20161110 documentation" href="../index.html"/>
+        <link rel="up" title="Exercises" href="index.html"/>
+        <link rel="next" title="2. The Exponential Integrate-and-Fire model" href="exponential-integrate-and-fire.html"/>
+        <link rel="prev" title="Exercises" href="index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Neuronaldynamics Exercises
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.1.dev42+ngbaf1c16.d20161110
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Exercises</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. Setting up Python and Brian</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-miniconda-recommended">1.1. Using miniconda (recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alternative-procedure-using-python-and-pip">1.2. Alternative procedure: Using python and pip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#links">1.3. Links</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="exponential-integrate-and-fire.html">2. The Exponential Integrate-and-Fire model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leaky-integrate-and-fire.html">3. Leaky-integrate-and-fire model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adex-model.html">4. AdEx: the Adaptive Exponential Integrate-and-Fire model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="passive-cable.html">5. Dendrites and the (passive) cable equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hodgkin-huxley.html">6. Numerical integration of the HH model of the squid axon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="phase-plane-analysis.html">7. FitzHugh-Nagumo: Phase plane and bifurcation analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="neuron-type.html">8. Type I and type II neuron models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hopfield-network.html">9. Hopfield Network model of associative memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ojas-rule.html">10. Oja&#8217;s hebbian learning rule</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contents.html">Python exercise modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licence.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Neuronaldynamics Exercises</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Exercises</a> &raquo;</li>
+      
+    <li>1. Setting up Python and Brian</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/exercises/setup.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="setting-up-python-and-brian">
+<span id="exercises-setup"></span><h1>1. Setting up Python and Brian<a class="headerlink" href="#setting-up-python-and-brian" title="Permalink to this headline">¶</a></h1>
+<p>To solve the exercises you need to install Python, Brian2 and the neurodynex package. The installation procedure we described here focuses on the tools we use in the classroom sessions at EPFL. For that reason we additionally set up a <strong>conda environment</strong> (which we call bmnn below) and install <a class="reference external" href="http://jupyter.readthedocs.io/en/latest/install.html">Jupyter</a> .</p>
+<div class="section" id="using-miniconda-recommended">
+<span id="exercises-setup-conda"></span><h2>1.1. Using miniconda (recommended)<a class="headerlink" href="#using-miniconda-recommended" title="Permalink to this headline">¶</a></h2>
+<p>We offer anaconda packages for the most recent releases, which is the easiest way of running the exercises.</p>
+<p>Head over to the <a class="reference external" href="http://conda.pydata.org/miniconda.html">miniconda download page</a> and install <strong>miniconda</strong> (for Python 2.7 preferably). You can then use conda to install Jupyter. Open a terminal and call:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt;&gt; conda install jupyter
+</pre></div>
+</div>
+<p>Now execute the following commands to <strong>install</strong> the exercise package as well as <strong>Brian2</strong> and some dependencies. Note: we create a <a class="reference external" href="http://conda.pydata.org/docs/test-drive.html#managing-envs">conda environment</a> called &#8216;bmnn&#8217;. You may want to change that name.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt;&gt; conda create --name bmnn <span class="nv">python</span><span class="o">=</span>2.7
+&gt;&gt; <span class="nb">source</span> activate bmnn
+&gt;&gt; conda install -c brian-team -c epfl-lcn neurodynex
+</pre></div>
+</div>
+<p>If you need to  <strong>update</strong> the exercise package, call:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>&gt;&gt; <span class="nb">source</span> activate bmnn
+&gt;&gt; conda update -c brian-team -c epfl-lcn neurodynex
+</pre></div>
+</div>
+</div>
+<div class="section" id="alternative-procedure-using-python-and-pip">
+<h2>1.2. Alternative procedure: Using python and pip<a class="headerlink" href="#alternative-procedure-using-python-and-pip" title="Permalink to this headline">¶</a></h2>
+<p>If you already have Python installed and prefer using PIP, you can get the most recent versions of this repository as a <a class="reference external" href="https://pypi.python.org/pypi/neurodynex/">pypi package</a> called <code class="docutils literal"><span class="pre">neurodynex</span></code>.</p>
+<p>To install the exercises using <code class="docutils literal"><span class="pre">pip</span></code> simply execute (the <code class="docutils literal"><span class="pre">--upgrade</span></code> flag will overwrite existing installations with the newest versions):</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pip install --upgrade neurodynex
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Should you want to run <a class="reference external" href="https://github.com/spyder-ide/spyder">Spyder</a> to work on the exercises, and you&#8217;re running into problems (commonly, after running <code class="docutils literal"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">spyder</span></code> you can not start <code class="docutils literal"><span class="pre">spyder</span></code> due to an error related to numpy), try the following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># create a new conda environment with spyder and the exercises</span>
+conda create --name neurodynex -c brian-team -c epfl-lcn neurodynex spyder
+
+<span class="c1"># activate the environment</span>
+<span class="nb">source</span> activate neurodynex
+</pre></div>
+</div>
+<p class="last">This creates a new conda environment (<a class="reference external" href="http://conda.pydata.org/docs/test-drive.html#managing-envs">here is more information on conda environments</a>) in which you can use spyder together with the exercises.</p>
+</div>
+</div>
+<div class="section" id="links">
+<h2>1.3. Links<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h2>
+<p>Here are some useful links to get started with Python and Brian</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.python.org/about/gettingstarted/">https://www.python.org/about/gettingstarted/</a></li>
+<li><a class="reference external" href="https://brian2.readthedocs.io/en/latest/index.html">https://brian2.readthedocs.io/en/latest/index.html</a></li>
+<li><a class="reference external" href="http://www.scipy.org">http://www.scipy.org</a></li>
+<li><a class="reference external" href="http://Matplotlib.sf.net">http://Matplotlib.sf.net</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="exponential-integrate-and-fire.html" class="btn btn-neutral float-right" title="2. The Exponential Integrate-and-Fire model" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Exercises" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, EPFL-LCN.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.1.dev42+ngbaf1c16.d20161110',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
